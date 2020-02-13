@@ -1,0 +1,35 @@
+include: 'https://gitlab.com/eric.fu/hola/raw/master/.gitlab-common.yml'
+
+build otc:
+  extends: .build
+  variables:
+    REPOSITORY_NAME: service.otc
+    BUILD_URL: cmd/app/*.go
+
+build expirecheck:
+  extends: .build
+  variables:
+    REPOSITORY_NAME: worker.expirecheck
+    BUILD_URL: cmd/expirecheck/*.go
+
+otc dev:
+  extends: .deploy_dev
+  variables:
+    APP: otc
+
+otc prod:
+  extends: .deploy_prod
+  variables:
+    APP: otc
+
+expirecheck dev:
+  extends: .deploy_dev
+  variables:
+    APP: worker-expirecheck
+    VALUE_FILE: worker.expirecheck.yaml
+
+expirecheck prod:
+  extends: .deploy_prod
+  variables:
+    APP: worker-expirecheck
+    VALUE_FILE: worker.expirecheck.yaml

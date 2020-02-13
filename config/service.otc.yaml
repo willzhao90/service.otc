@@ -1,0 +1,10 @@
+kafka:
+  brokers:
+    - localhost:9092
+
+mongo:
+  uri: mongodb://localhost:27017
+  dbName: exchange
+
+service:
+  member: localhost:8027
